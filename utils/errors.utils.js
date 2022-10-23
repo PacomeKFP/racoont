@@ -27,3 +27,9 @@ module.exports.signInErrors = (err) => {
     errors.password = "le mot de passe entré est incorrect";
   return errors;
 };
+module.exports.uploadErrors = (err) => {
+  let errors = {};
+  if (err.message.includes("format"))
+    errors.format = "Format de fichier incompatible";
+  if (err.message.includes("size")) errors.format = "Le fichier depasse  500ko";
+};

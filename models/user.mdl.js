@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       max: 1024,
       minlength: 6,
+      select: false,
     },
     picture: {
       type: String,
@@ -49,7 +50,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 //play this function before save into display: 'block'
-
 userSchema.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
